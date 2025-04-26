@@ -494,14 +494,14 @@ try:
                             """
                             <div class="doc-panel">
                                 <div class="doc-titulo">📝 Información Adicional</div>
-                                <p>La dosificación óptima de sulfato de aluminio es crucial para lograr una efectiva coagulación-floculación en el tratamiento de agua potable. Una dosificación adecuada garantiza:</p>
+                                <p>La determinación precisa de la dosis de sulfato de aluminio constituye un factor determinante para lograr la eficiencia del proceso de coagulación-floculación en el tratamiento de agua potable. Una dosificación técnicamente calibrada garantiza:</p>
                                 <ul>
                                     <li>Remoción efectiva de materias en suspensión</li>
                                     <li>Optimización en el consumo de productos químicos</li>
                                     <li>Mejor calidad del agua tratada</li>
                                     <li>Reducción en costos operativos</li>
                                 </ul>
-                                <p>Este sistema utiliza modelos matemáticos de interpolación basados en datos experimentales de la Planta El Milagro para determinar la dosis óptima según las condiciones específicas del agua cruda.</p>
+                                <p>Este sistema emplea avanzados modelos matemáticos de interpolación con splines cúbicos y algoritmos de toma de decisiones basados en lógica difusa, calibrados con datos experimentales de la Planta El Milagro, para determinar con precisión la dosis óptima de tratamiento según las condiciones específicas del agua cruda.</p>
                             </div>
                             """,
                             unsafe_allow_html=True
@@ -520,15 +520,15 @@ try:
             <div style="font-weight: 600; margin-bottom: 0.5rem; font-size: 1.2rem;">Sistema de Dosificación Óptima de Sulfato de Aluminio</div>
             <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin: 1.5rem 0;">
                 <div style="padding: 0 1rem; text-align: center;">
-                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-bottom: 0.3rem;">Autor</div>
-                    <div style="font-size: 1.1rem; font-weight: 500;">Ever Rojas Huamán</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-bottom: 0.3rem;">Investigador principal</div>
+                    <div style="font-size: 1.1rem; font-weight: 500;">MSc. Ever Rojas Huamán</div>
                 </div>
                 <div style="padding: 0 1rem; text-align: center;">
-                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-bottom: 0.3rem;">Asesor</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-bottom: 0.3rem;">Asesor de Investigación</div>
                     <div style="font-size: 1.1rem; font-weight: 500;">Dr. Glicerio Eduardo Torres Carranza</div>
                 </div>
             </div>
-            <div class="footer-institution">Universidad Nacional de Cajamarca - Escuela de Posgrado, 2025</div>
+            <div class="footer-institution">Universidad Nacional de Cajamarca<br>Escuela de Posgrado, 2025</div>
         </div>
         """,
         unsafe_allow_html=True

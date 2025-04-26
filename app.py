@@ -103,7 +103,8 @@ def cargar_historial():
             'fecha', 'hora', 'turbidez', 'ph', 'caudal', 
             'dosis_mg_l', 'metodo_calculo', 'categoria'
         ])
-        # --- Funciones para generar gráficas ---
+
+# --- Funciones para generar gráficas ---
 
 def crear_grafica_tendencia_turbidez_dosis(historial_df):
     """
@@ -275,12 +276,13 @@ def load_data():
     
     # Eliminar filas con NaN en columnas críticas
     data = data.dropna(subset=['turbiedad', 'dosis_mg_l'])
-    return
+    
+    return data
 
-    try:
+try:
     # Cargar datos de dosificación
-        data = load_data()
-        
+    data = load_data()
+    
     # Verificar si hay datos después de la limpieza
     if data.empty:
         st.error("No hay datos válidos en el archivo CSV después de eliminar valores no numéricos.")

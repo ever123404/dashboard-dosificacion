@@ -209,13 +209,11 @@ def crear_grafica_serie_temporal(historial_df, periodo='mes'):
         title=titulo,
         xaxis=dict(title='Fecha y Hora'),
         yaxis=dict(
-            title='Turbidez (NTU)',
-            titlefont=dict(color=COLOR_ADVERTENCIA),
+            title=dict(text='Turbidez (NTU)', font=dict(color=COLOR_ADVERTENCIA)),
             tickfont=dict(color=COLOR_ADVERTENCIA)
         ),
         yaxis2=dict(
-            title='Dosis (mg/L)',
-            titlefont=dict(color=COLOR_PRIMARIO),
+            title=dict(text='Dosis (mg/L)', font=dict(color=COLOR_PRIMARIO)),
             tickfont=dict(color=COLOR_PRIMARIO),
             anchor='x',
             overlaying='y',

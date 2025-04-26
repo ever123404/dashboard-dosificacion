@@ -275,12 +275,12 @@ def load_data():
     
     # Eliminar filas con NaN en columnas críticas
     data = data.dropna(subset=['turbiedad', 'dosis_mg_l'])
-    
+        return
+
     try:
     # Cargar datos de dosificación
     data = load_data()
-    return data
-    
+        
     # Verificar si hay datos después de la limpieza
     if data.empty:
         st.error("No hay datos válidos en el archivo CSV después de eliminar valores no numéricos.")

@@ -132,6 +132,14 @@ css = """
         text-align: center;
     }
     
+    .footer-institution {
+        font-size: 1rem !important;
+        opacity: 1 !important;
+        font-weight: 500 !important;
+        margin-top: 1rem !important;
+        color: rgba(255,255,255,0.95) !important;
+    }
+    
     .info-badge {
         display: inline-block;
         padding: 0.25rem 0.75rem;
@@ -261,11 +269,12 @@ try:
         st.stop()
 
     # Encabezado con estilos en línea para mayor seguridad
+    # Eliminada la redundancia de "Universidad Nacional de Cajamarca"
     st.markdown(
         """
         <div class="header-container">
             <h1 class="header-titulo" style="color: white !important; text-align: center; font-size: 2rem;">Sistema de Dosificación Óptima</h1>
-            <h3 class="header-subtitulo" style="color: rgba(255,255,255,0.9) !important; text-align: center; font-weight: 300;">Universidad Nacional de Cajamarca • Planta de Tratamiento El Milagro • EPS SEDACAJ S.A.</h3>
+            <h3 class="header-subtitulo" style="color: rgba(255,255,255,0.9) !important; text-align: center; font-weight: 300;">Planta de Tratamiento El Milagro • EPS SEDACAJ S.A.</h3>
         </div>
         """, 
         unsafe_allow_html=True
@@ -287,7 +296,7 @@ try:
                 <div class="instruccion-texto">
                     Ingrese los valores de turbidez, pH y caudal operativo para calcular la dosis óptima de 
                     sulfato de aluminio necesaria para el tratamiento de agua potable. El cálculo se realiza 
-                    mediante interpolación por splines cúbicos basado en datos experimentales.
+                    mediante interpolación por splines cúbicos y toma de decisiones con lógica difusa, basado en datos experimentales.
                 </div>
             </div>
             """,
@@ -492,7 +501,7 @@ try:
                                     <li>Mejor calidad del agua tratada</li>
                                     <li>Reducción en costos operativos</li>
                                 </ul>
-                                <p>Este sistema utiliza modelos matemáticos de interpolación como splines cúbicos y de toma de decisiones como lógica difusa, basados en datos experimentales de la Planta El Milagro para determinar la dosis óptima según las condiciones específicas del agua cruda.</p>
+                                <p>Este sistema utiliza modelos matemáticos de interpolación basados en datos experimentales de la Planta El Milagro para determinar la dosis óptima según las condiciones específicas del agua cruda.</p>
                             </div>
                             """,
                             unsafe_allow_html=True
@@ -504,7 +513,7 @@ try:
                     # Mensaje de error genérico
                     st.error("Ocurrió un error al procesar los datos. Verifique los parámetros ingresados e intente nuevamente.")
     
-    # Pie de página profesional
+    # Pie de página profesional mejorado
     st.markdown(
         """
         <div class="footer">
@@ -519,7 +528,7 @@ try:
                     <div style="font-size: 1.1rem; font-weight: 500;">Dr. Glicerio Eduardo Torres Carranza</div>
                 </div>
             </div>
-            <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 1rem;">Universidad Nacional de Cajamarca - Escuela de Posgrado, 2025</div>
+            <div class="footer-institution">Universidad Nacional de Cajamarca - Escuela de Posgrado, 2025</div>
         </div>
         """,
         unsafe_allow_html=True

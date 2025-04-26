@@ -279,7 +279,7 @@ def load_data():
 
     try:
     # Cargar datos de dosificación
-    data = load_data()
+        data = load_data()
         
     # Verificar si hay datos después de la limpieza
     if data.empty:

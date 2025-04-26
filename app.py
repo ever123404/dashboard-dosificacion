@@ -941,7 +941,43 @@ try:
                         b64 = base64.b64encode(csv.encode()).decode()
                         href = f'<a href="data:file/csv;base64,{b64}" download="historial_dosificacion.csv" class="btn" style="background-color: #003366; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 0.25rem; display: block; text-align: center; margin-top: 0.5rem;">Descargar CSV</a>'
                         st.markdown(href, unsafe_allow_html=True)
-                
+                        # Añadir después del código de exportación y antes de cerrar el div
+                        st.markdown('<hr style="margin: 1.5rem 0 1rem 0; border-color: rgba(0,0,0,0.1);">', unsafe_allow_html=True)
+
+                        # Sección de administración
+                        st.markdown(
+                            f"""
+                            <div style="background-color: rgba(220, 53, 69, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 3px solid {COLOR_ERROR};">
+                                <div style="color: {COLOR_ERROR}; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem;">Administración de datos</div>
+                                <div style="font-size: 0.85rem; color: #666; margin-bottom: 0.75rem;">Las siguientes acciones afectan permanentemente a los datos históricos.</div>
+                            </div>
+                            """,
+                            unsafe_allow_html=True
+                        )
+
+                        # Botón para limpiar historial
+                        limpiar_historial = st.button("🗑️ Limpiar todos los registros", use_container_width=True, type="secondary")
+
+                        # Lógica de limpieza en un expander para requerir un paso adicional
+                        if limpiar_historial:
+                            with st.expander("⚠️ Confirmar eliminación", expanded=True):
+                                st.warning("Esta acción eliminará **TODOS** los registros históricos y no puede deshacerse.")
+        
+                                confirmar_limpieza = st.checkbox("Entiendo las consecuencias y deseo proceder")
+        
+                                if confirmar_limpieza and st.button("Confirmar eliminación", type="primary"):
+                                    # Crear un archivo vacío (reemplazar el existente)
+                                    empty_df = pd.DataFrame(columns=[
+                                        'fecha', 'hora', 'turbidez', 'ph', 'caudal', 
+                                        'dosis_mg_l', 'metodo_calculo', 'categoria'
+                                    ])
+                                    empty_df.to_csv(HISTORY_FILE, index=False)
+            
+                                    # Mensaje de confirmación
+                                    st.success("El historial ha sido borrado exitosamente.")
+            
+                                    # Botón para recargar la página
+                                    st.button("Recargar página", on_click=lambda: st.experimental_rerun())
                 st.markdown('</div>', unsafe_allow_html=True)
             
             # Columna de visualizaciones

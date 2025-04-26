@@ -57,16 +57,17 @@ css = """
         text-align: center;
     }
     
-    .header-titulo {
-        color: white;
-        text-align: center;
-        font-size: 2rem;
+    /* Aumentada la especificidad y añadido !important */
+    div.header-container h1.header-titulo {
+        color: white !important;
+        text-align: center !important;
+        font-size: 2rem !important;
     }
     
-    .header-subtitulo {
-        color: rgba(255,255,255,0.9);
-        text-align: center;
-        font-weight: 300;
+    div.header-container h3.header-subtitulo {
+        color: rgba(255,255,255,0.9) !important;
+        text-align: center !important;
+        font-weight: 300 !important;
     }
     
     .card {
@@ -259,12 +260,12 @@ try:
         st.error("No hay datos válidos en el archivo CSV después de eliminar valores no numéricos.")
         st.stop()
 
-    # Encabezado sin logos
+    # Encabezado con estilos en línea para mayor seguridad
     st.markdown(
         """
         <div class="header-container">
-            <h1 class="header-titulo">Sistema de Dosificación Óptima</h1>
-            <h3 class="header-subtitulo">Universidad Nacional de Cajamarca • Planta de Tratamiento El Milagro • EPS SEDACAJ S.A.</h3>
+            <h1 class="header-titulo" style="color: white !important; text-align: center; font-size: 2rem;">Sistema de Dosificación Óptima</h1>
+            <h3 class="header-subtitulo" style="color: rgba(255,255,255,0.9) !important; text-align: center; font-weight: 300;">Universidad Nacional de Cajamarca • Planta de Tratamiento El Milagro • EPS SEDACAJ S.A.</h3>
         </div>
         """, 
         unsafe_allow_html=True
@@ -491,7 +492,7 @@ try:
                                     <li>Mejor calidad del agua tratada</li>
                                     <li>Reducción en costos operativos</li>
                                 </ul>
-                                <p>Este sistema utiliza modelos matemáticos de interpolación basados en datos experimentales de la Planta El Milagro para determinar la dosis óptima según las condiciones específicas del agua cruda.</p>
+                                <p>Este sistema utiliza modelos matemáticos de interpolación como splines cúbicos y de toma de decisiones como lógica difusa, basados en datos experimentales de la Planta El Milagro para determinar la dosis óptima según las condiciones específicas del agua cruda.</p>
                             </div>
                             """,
                             unsafe_allow_html=True

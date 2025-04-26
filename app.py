@@ -275,7 +275,7 @@ def load_data():
     
     # Eliminar filas con NaN en columnas críticas
     data = data.dropna(subset=['turbiedad', 'dosis_mg_l'])
-        return
+    return
 
     try:
     # Cargar datos de dosificación

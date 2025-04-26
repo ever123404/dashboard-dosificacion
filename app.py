@@ -873,13 +873,18 @@ try:
                 # Obtener valores mínimos y máximos para el slider
                 min_turbidez = float(historial_df['turbidez'].min())
                 max_turbidez = float(historial_df['turbidez'].max())
-                
+
+                # Verificar si min y max son iguales y ajustar
+                if min_turbidez == max_turbidez:
+                min_turbidez = max(0.0, min_turbidez - 1.0)  # Reducir el mínimo en 1
+                max_turbidez = max_turbidez + 1.0  # Aumentar el máximo en 1
+
                 rango_turbidez = st.slider(
-                    "Filtrar por turbidez (NTU):",
-                    min_value=min_turbidez,
-                    max_value=max_turbidez,
-                    value=(min_turbidez, max_turbidez),
-                    step=1.0
+                "Filtrar por turbidez (NTU):",
+                min_value=min_turbidez,
+                max_value=max_turbidez,
+                value=(min_turbidez, max_turbidez),
+                step=1.0
                 )
                 
                 # Aplicar filtros al dataframe
@@ -1093,8 +1098,8 @@ try:
                         
                         st.markdown('</div>', unsafe_allow_html=True)
         
-        # Mostrar pie de página
-        mostrar_pie_pagina()
+    # Mostrar pie de página
+    mostrar_pie_pagina()
 
 except Exception as e:
     st.error(f"Error en la aplicación: {str(e)}")

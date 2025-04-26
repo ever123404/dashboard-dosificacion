@@ -273,8 +273,10 @@ try:
     st.markdown(
         """
         <div class="header-container">
-            <h1 class="header-titulo" style="color: white !important; text-align: center; font-size: 2rem;">Sistema de Dosificación Óptima</h1>
-            <h3 class="header-subtitulo" style="color: rgba(255,255,255,0.9) !important; text-align: center; font-weight: 300;">Planta de Tratamiento El Milagro • EPS SEDACAJ S.A.</h3>
+        <h1 class="header-titulo" style="color: white !important; text-align: center; font-size: 2rem;">Sistema de Dosificación Óptima</h1>
+        <h3 class="header-subtitulo" style="color: rgba(255,255,255,0.9) !important; text-align: center; font-weight: 300; margin-bottom: 0.3rem;">Planta de Tratamiento El Milagro</h3>
+        <h3 class="header-subtitulo" style="color: rgba(255,255,255,0.9) !important; text-align: center; font-weight: 300;">EPS SEDACAJ S.A.</h3>
+    </div>
         </div>
         """, 
         unsafe_allow_html=True

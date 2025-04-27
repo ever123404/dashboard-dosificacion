@@ -941,32 +941,32 @@ try:
                         b64 = base64.b64encode(csv.encode()).decode()
                         href = f'<a href="data:file/csv;base64,{b64}" download="historial_dosificacion.csv" class="btn" style="background-color: #003366; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 0.25rem; display: block; text-align: center; margin-top: 0.5rem;">Descargar CSV</a>'
                         st.markdown(href, unsafe_allow_html=True)
-            # Después de toda la lógica de exportación y antes de cerrar el div          
-            st.markdown('<hr style="margin: 1.5rem 0; border-color: #f0f0f0;">', unsafe_allow_html=True)            
+                    # Después de toda la lógica de exportación y antes de cerrar el div          
+                    st.markdown('<hr style="margin: 1.5rem 0; border-color: #f0f0f0;">', unsafe_allow_html=True)            
                         
-            # Sección de administración completamente separada  
-                        with st.expander("⚠️ Administración de datos", expanded=False):
-                            st.warning("Las siguientes acciones afectan permanentemente a los datos históricos.")
+                    # Sección de administración completamente separada  
+                    with st.expander("⚠️ Administración de datos", expanded=False):
+                        st.warning("Las siguientes acciones afectan permanentemente a los datos históricos.")
 
-                            col1, col2 = st.columns([3, 1])
-                            with col1:
-                                confirmar = st.checkbox("Confirmo que deseo eliminar TODOS los registros (acción irreversible)", key="confirm_delete")
+                        col1, col2 = st.columns([3, 1])
+                        with col1:
+                            confirmar = st.checkbox("Confirmo que deseo eliminar TODOS los registros (acción irreversible)", key="confirm_delete")
 
-                            with col2:
-                                if st.button("Eliminar", key="btn_delete", disabled=not confirmar, type="primary"):
-                                    try:
-                                        # Crear DataFrame vacío
-                                        empty_df = pd.DataFrame(columns=[
-                                            'fecha', 'hora', 'turbidez', 'ph', 'caudal', 
-                                            'dosis_mg_l', 'metodo_calculo', 'categoria'
-                                        ])
-                                        # Guardar como CSV vacío
-                                        empty_df.to_csv(HISTORY_FILE, index=False)
-                                        st.success("¡Historial borrado correctamente!")
-                                        time.sleep(1)  # Pequeña pausa para mostrar el mensaje
-                                        st.experimental_rerun()  # Recargar directamente
-                            except Exception as e:      
-                                        st.error(f"Error al eliminar historial: {str(e)}")
+                        with col2:
+                            if st.button("Eliminar", key="btn_delete", disabled=not confirmar, type="primary"):
+                                try:
+                                    # Crear DataFrame vacío
+                                    empty_df = pd.DataFrame(columns=[
+                                        'fecha', 'hora', 'turbidez', 'ph', 'caudal', 
+                                        'dosis_mg_l', 'metodo_calculo', 'categoria'
+                                    ])
+                                    # Guardar como CSV vacío
+                                    empty_df.to_csv(HISTORY_FILE, index=False)
+                                    st.success("¡Historial borrado correctamente!")
+                                    time.sleep(1)  # Pequeña pausa para mostrar el mensaje
+                                    st.experimental_rerun()  # Recargar directamente
+                        except Exception as e:      
+                                    st.error(f"Error al eliminar historial: {str(e)}")
                         
                 st.markdown('</div>', unsafe_allow_html=True)
             

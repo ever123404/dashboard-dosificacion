@@ -965,7 +965,7 @@ try:
                                     st.success("¡Historial borrado correctamente!")
                                     time.sleep(1)  # Pequeña pausa para mostrar el mensaje
                                     st.experimental_rerun()  # Recargar directamente
-                        except Exception as e:      
+                                except Exception as e:      
                                     st.error(f"Error al eliminar historial: {str(e)}")
                         
                 st.markdown('</div>', unsafe_allow_html=True)

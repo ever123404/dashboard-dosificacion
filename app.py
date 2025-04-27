@@ -600,9 +600,9 @@ try:
                 
                 turbidez = st.number_input(
                     "Turbidez (NTU)", 
-                    min_value=0.1, 
+                    min_value=0.0, 
                     max_value=4000.0, 
-                    value=100.0, 
+                    value=0.0, 
                     step=1.0,
                     help="Ingrese la turbidez del agua cruda medida en Unidades Nefelométricas de Turbidez (NTU)"
                 )
@@ -625,8 +625,8 @@ try:
                     "Caudal Operativo (L/s)", 
                     min_value=150.0, 
                     max_value=300.0, 
-                    value=200.0, 
-                    step=5.0,
+                    value=0.0, 
+                    step=1.0,
                     help="Ingrese el caudal de operación de la planta en litros por segundo"
                 )
                 
@@ -650,7 +650,6 @@ try:
                 f'<div style="text-align:center;"><span class="info-badge">Fecha: {now.strftime("%d/%m/%Y")} • Hora: {now.strftime("%H:%M")}</span></div>', 
                 unsafe_allow_html=True
             )
-            
             st.markdown('</div>', unsafe_allow_html=True)
             
         # Columna de resultados
@@ -934,6 +933,7 @@ try:
                         b64 = base64.b64encode(csv.encode()).decode()
                         href = f'<a href="data:file/csv;base64,{b64}" download="historial_dosificacion.csv" class="btn" style="background-color: #003366; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 0.25rem; display: block; text-align: center; margin-top: 0.5rem;">Descargar CSV</a>'
                         st.markdown(href, unsafe_allow_html=True)
+                    
                     else:
                         # Crear y descargar Excel (simulado, ya que no es soportado directamente)
                         st.warning("La exportación a Excel requiere una configuración adicional. Por ahora, se exportará como CSV.")
@@ -941,21 +941,28 @@ try:
                         b64 = base64.b64encode(csv.encode()).decode()
                         href = f'<a href="data:file/csv;base64,{b64}" download="historial_dosificacion.csv" class="btn" style="background-color: #003366; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 0.25rem; display: block; text-align: center; margin-top: 0.5rem;">Descargar CSV</a>'
                         st.markdown(href, unsafe_allow_html=True)
-                        # Separador horizontal
-                        st.markdown('<hr style="margin: 1rem 0;">', unsafe_allow_html=True)
-                        # Botón de limpieza simple
-                        st.markdown("<p style='color:#DC3545; font-weight:500; margin-top:1rem;'>Administración de datos:</p>", unsafe_allow_html=True)
-                        if st.button("Limpiar historial de registros", key="btn_limpiar", use_container_width=True):
-                            if st.checkbox("Confirmar eliminación (esta acción no se puede deshacer)", key="chk_confirmar"):
-                                # Crear DataFrame vacío
-                                empty_df = pd.DataFrame(columns=[
-                                    'fecha', 'hora', 'turbidez', 'ph', 'caudal', 
-                                    'dosis_mg_l', 'metodo_calculo', 'categoria'
-                                ])
-                                # Guardar como CSV vacío
-                                empty_df.to_csv(HISTORY_FILE, index=False)
-                                st.success("El historial ha sido borrado exitosamente.")
-                                st.button("Recargar página", key="btn_recargar", on_click=lambda: st.experimental_rerun())
+            # Después de toda la lógica de exportación y antes de cerrar el div          
+            st.markdown('<hr style="margin: 1.5rem 0; border-color: #f0f0f0;">', unsafe_allow_html=True)            
+                        
+            # Sección de administración completamente separada        
+            with st.expander("⚠️ Administración de datos", expanded=False):            
+                st.warning("Las siguientes acciones afectan permanentemente a los datos históricos.")        
+                        
+                if st.button("Eliminar todos los registros históricos", key="btn_eliminar_todo"):        
+                    confirmacion = st.checkbox("Confirmo que deseo eliminar TODOS los registros (acción irreversible)", key="confirm_delete_all")    
+                        
+                    if confirmacion and st.button("Proceder con la eliminación", key="btn_confirm_delete"):    
+                        # Crear DataFrame vacío
+                        empty_df = pd.DataFrame(columns=[
+                            'fecha', 'hora', 'turbidez', 'ph', 'caudal', 
+                            'dosis_mg_l', 'metodo_calculo', 'categoria'
+                        ])
+                        # Guardar como CSV vacío
+                        empty_df.to_csv(HISTORY_FILE, index=False)
+                        st.success("¡Historial borrado correctamente!")
+                        if st.button("Recargar página", key="btn_reload"):
+                            st.experimental_rerun()
+                        
                 st.markdown('</div>', unsafe_allow_html=True)
             
             # Columna de visualizaciones

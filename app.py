@@ -623,7 +623,7 @@ try:
                 
                 caudal = st.number_input(
                     "Caudal Operativo (L/s)", 
-                    min_value=150.0, 
+                    min_value=0.0, 
                     max_value=300.0, 
                     value=0.0, 
                     step=1.0,

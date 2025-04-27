@@ -945,28 +945,28 @@ try:
             st.markdown('<hr style="margin: 1.5rem 0; border-color: #f0f0f0;">', unsafe_allow_html=True)            
                         
             # Sección de administración completamente separada  
-                with st.expander("⚠️ Administración de datos", expanded=False):
-                    st.warning("Las siguientes acciones afectan permanentemente a los datos históricos.")
+                        with st.expander("⚠️ Administración de datos", expanded=False):
+                            st.warning("Las siguientes acciones afectan permanentemente a los datos históricos.")
 
-                    col1, col2 = st.columns([3, 1])
-                    with col1:
-                        confirmar = st.checkbox("Confirmo que deseo eliminar TODOS los registros (acción irreversible)", key="confirm_delete")
+                            col1, col2 = st.columns([3, 1])
+                            with col1:
+                                confirmar = st.checkbox("Confirmo que deseo eliminar TODOS los registros (acción irreversible)", key="confirm_delete")
 
-                    with col2:
-                        if st.button("Eliminar", key="btn_delete", disabled=not confirmar, type="primary"):
-                            try:
-                                # Crear DataFrame vacío
-                                empty_df = pd.DataFrame(columns=[
-                                    'fecha', 'hora', 'turbidez', 'ph', 'caudal', 
-                                    'dosis_mg_l', 'metodo_calculo', 'categoria'
-                                ])
-                                # Guardar como CSV vacío
-                                empty_df.to_csv(HISTORY_FILE, index=False)
-                                st.success("¡Historial borrado correctamente!")
-                                time.sleep(1)  # Pequeña pausa para mostrar el mensaje
-                                st.experimental_rerun()  # Recargar directamente
-                     except Exception as e:      
-                                st.error(f"Error al eliminar historial: {str(e)}")
+                            with col2:
+                                if st.button("Eliminar", key="btn_delete", disabled=not confirmar, type="primary"):
+                                    try:
+                                        # Crear DataFrame vacío
+                                        empty_df = pd.DataFrame(columns=[
+                                            'fecha', 'hora', 'turbidez', 'ph', 'caudal', 
+                                            'dosis_mg_l', 'metodo_calculo', 'categoria'
+                                        ])
+                                        # Guardar como CSV vacío
+                                        empty_df.to_csv(HISTORY_FILE, index=False)
+                                        st.success("¡Historial borrado correctamente!")
+                                        time.sleep(1)  # Pequeña pausa para mostrar el mensaje
+                                        st.experimental_rerun()  # Recargar directamente
+                            except Exception as e:      
+                                        st.error(f"Error al eliminar historial: {str(e)}")
                         
                 st.markdown('</div>', unsafe_allow_html=True)
             
